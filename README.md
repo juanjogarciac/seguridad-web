@@ -1,6 +1,8 @@
 # seguridad-web
 
-Skill personal para Claude Code que aplica reglas de seguridad al crear, modificar o revisar proyectos web y apps.
+Skill personal para [Claude Code](https://claude.com/claude-code) que aplica reglas de seguridad al crear, modificar o revisar proyectos web y apps: autorización por recurso, consultas parametrizadas, gestión de secretos, cabeceras HTTP, webhooks, dependencias y revisión antes de cada deploy.
+
+Se activa automáticamente cuando Claude construye o revisa código de backend, formularios, APIs, login o pagos, y antes de desplegar.
 
 ## Contenido
 
@@ -16,12 +18,25 @@ Skill personal para Claude Code que aplica reglas de seguridad al crear, modific
 
 ## Instalación
 
+Requisitos: Claude Code instalado, `git` y `bash`.
+
 ```bash
-git clone <URL_DEL_REPOSITORIO> ~/seguridad-web-skill
+git clone https://github.com/juanjogarciac/seguridad-web.git ~/seguridad-web-skill
 cd ~/seguridad-web-skill
-./install.sh                     # skill personal
-./install.sh ~/mi-proyecto       # además, plantillas en el proyecto
+./install.sh                     # skill personal para todos tus proyectos
+./install.sh ~/mi-proyecto       # además, copia CLAUDE.md, settings.json y el hook al proyecto
 ```
+
+Si ya tienes ficheros con esos nombres en el proyecto, el instalador no los sobrescribe.
+
+Instalación alternativa sin script, copiando el skill a mano:
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r ~/seguridad-web-skill ~/.claude/skills/seguridad-web
+```
+
+Con esta opción no se actualiza con `git pull`; tendrías que copiar de nuevo.
 
 `install.sh` crea un enlace simbólico, así que `git pull` actualiza el skill sin volver a instalarlo.
 
