@@ -27,6 +27,17 @@ cd ~/seguridad-web-skill
 
 Para verificar: abre Claude Code y escribe `/skills`; debe aparecer `seguridad-web`.
 
+### Plugins complementarios de Trail of Bits (opcional, recomendado)
+
+El skill usa, si están instalados, plugins del marketplace público [`trailofbits/skills`](https://github.com/trailofbits/skills). No se incluyen en este repositorio. Dentro de Claude Code:
+
+```
+/plugin marketplace add trailofbits/skills
+/plugin menu
+```
+
+Desde `/plugin menu` instala al menos `static-analysis`, `insecure-defaults`, `supply-chain-risk-auditor`, `differential-review` y `fp-check`. Añade `modern-python`, `c-review` o `rust-review` según el lenguaje del proyecto.
+
 ## Actualizar
 
 ```bash
@@ -38,3 +49,4 @@ cd ~/seguridad-web-skill && git pull
 - Las deny rules y el hook reducen riesgos, pero no son una frontera de seguridad. Úsalos junto con `/sandbox` y, en proyectos sensibles, con un contenedor.
 - Revisa cualquier skill de terceros que instales antes de activarla: pueden contener instrucciones maliciosas.
 - Este skill se basa en una guía propia y en buenas prácticas OWASP. Verifica la sintaxis de configuración de Claude Code en la documentación oficial si cambia.
+- Los plugins de `trailofbits/skills` no se redistribuyen aquí. Su contenido tiene licencia CC-BY-SA-4.0 y se instala desde su marketplace oficial.

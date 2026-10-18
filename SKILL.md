@@ -40,7 +40,31 @@ Este skill fija las reglas de seguridad que deben cumplirse en cualquier proyect
 - Ejecuta el checklist completo de `checklist.md`.
 - Si está disponible, ejecuta `/security-review`.
 - Ejecuta `npm audit` o `pip-audit`, y `gitleaks detect --source . -v`.
+- Si los plugins de Trail of Bits están instalados, úsalos según la tabla de la sección «Herramientas complementarias».
 - Presenta los hallazgos por severidad. No desplegues con hallazgos críticos o altos sin resolver o sin aprobación explícita del usuario.
+
+## Herramientas complementarias (Trail of Bits)
+
+Este skill se apoya en el marketplace público `trailofbits/skills` (licencia CC-BY-SA-4.0). Sus plugins no vienen incluidos aquí: son opcionales y deben instalarse por separado. Antes de usarlos, comprueba si están disponibles (por ejemplo, con `/plugin menu`). Si no lo están, sigue con el checklist y indica al usuario qué plugin le recomendarías instalar.
+
+| Momento | Plugin | Para qué |
+|---|---|---|
+| Análisis estático general | `static-analysis` | CodeQL y Semgrep, con salida SARIF |
+| Configuraciones por defecto | `insecure-defaults` | Configuraciones fail-open o inseguras por defecto |
+| Dependencias | `supply-chain-risk-auditor` | Paquetes npm, PyPI y Go sin mantenimiento o de riesgo |
+| Diseño de APIs | `sharp-edges` | APIs propensas a errores y diseños peligrosos |
+| Revisión de cambios | `differential-review` | Revisar un cambio con el historial de git |
+| Buscar problemas parecidos | `variant-analysis` | Tras encontrar un fallo, buscar variantes en el resto del código |
+| Reducir falsos positivos | `fp-check` | Verificación sistemática antes de reportar un hallazgo |
+| Triaje de reportes | `vulnerability-triage-brocards` | Priorizar y clasificar los hallazgos |
+| GitHub Actions | `agentic-actions-auditor` | Workflows de CI que usan agentes de IA |
+| Python | `modern-python` | Herramientas actuales (uv, ruff, pytest) |
+| C/C++ y Rust | `c-review`, `rust-review` | Revisión específica del lenguaje |
+
+Reglas de uso:
+- Los resultados de estas herramientas son orientativos: verifícalos antes de corregir o de reportar.
+- No apliques correcciones automáticas de un plugin sin la aprobación del usuario.
+- `gh-cli` intercepta peticiones a GitHub; actívalo solo si el usuario lo pide.
 
 ## Acciones que requieren confirmación explícita
 
